@@ -2,11 +2,54 @@
 <html>
 <head>
 <title>Page Title</title>
+<style>
+    #clock
+    {
+        display: inline-block; /* This part of the code maintains the time module on the same line as the sentence */
+    }
+</style>
 </head>
 <body>
+    <script type="text/javascript"> //Start of javascript
+        setInterval(displayclock, 500); //Calls the displayclock() function to reload every 500 millisecond to display the time on the page.
+        function displayclock() // Start of displayclock().
+        {
+            var time = new Date(); //Creates a variable called 'time' using the Date() function to obtian a string representation of the current date and time. 
+            var hrs = time.getHours(); //Creates a variable called 'hrs' to represent hours interval
+            var min = time.getMinutes(); //Creates a variable called 'min' to represent minutes interval
+            var sec = time.getSeconds(); //Creates a variable called 'sec' to represent seconds interval
+    
+            if (hrs > 12) //Maintains the hour interval does not go over 12 as we do not want a 24hr format by subtracting 12 from the hour over 12. 
+            {
+                hrs = hrs - 12;
+            }
+            
+            if (hrs == 0) //If the hour is before 1, display the time as 12 instead of 0.
+            {
+                hrs = 12;
+            }
+            
+            if (hrs < 10) //If the hours interval is less than 10, this will concate a zero before the number. i.e. 1 -> 01
+            {
+                hrs = '0' + hrs;
+            }
+            
+            if (min < 10) //If the minute interval is less than 10, this will concate a zero before the number. i.e. 1 -> 01
+            {
+                min = '0' + min;
+            }
+            
+            if (sec < 10) //If the second interval is less than 10, this will concate a zero before the number. i.e. 1 -> 01
+            {
+                sec = '0' + sec;
+            }
+    
+            document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec; //This will display the clock on the page with ':' in between the 'hrs', 'sec', and 'min'
+        }
+        </script><!--end of javascript-->
 
-<h1>My name is Bryant Bardales and my favorite hobby is collecting sneakers.</h1>
-
-
+<h1> <!--Start of sentence to be displayed-->
+    My name is Bryant Bardales and my favorite hobby is collecting sneakers. The current time is: <div id="clock">00:00:00</div>. <!--Sentence with div tag that contains the clock element styled by CSS-->
+</h1> <!--End of sentance to be displayed-->
 </body>
 </html>
